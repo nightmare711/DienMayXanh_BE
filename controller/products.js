@@ -25,7 +25,6 @@ exports.postProducts = (req,res,next) => {
     return cloudinary.uploader.upload(base64, {
         overwrite: true,
         invalidate: true,
-        width: 810, height: 456, crop: "fill"
     }, function (error, resUp) {
         if(!error) {
             const product = new Products({
@@ -139,7 +138,6 @@ exports.updateProduct = (req,res,next) => {
                 return cloudinary.uploader.upload(base64, {
                     overwrite: true,
                     invalidate: true,
-                    width: 810, height: 456, crop: "fill"
                 }, function (error, resUp) {
                     if(!error) {
                         
