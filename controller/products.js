@@ -134,31 +134,24 @@ exports.updateProduct = (req,res,next) => {
             product.description = description
             product.name = name
             product.price = price
+            console.log(product)
             if(base64) {
                 return cloudinary.uploader.upload(base64, {
                     overwrite: true,
                     invalidate: true,
                 }, function (error, resUp) {
                     if(!error) {
-                        
                         product.imgUrl = resUp.secure_url
-                        return Products.findOne({name: name}).then(result => {
-                            if(!result) {
-                                return product.save().then(postResult => res.status(201).json({
-                                    status: 1,
-                                    message: 'Post updated successfully',
-                                    result: postResult
-                                })).catch(err => res.status(500).json({
-                                    status:0,
-                                    message: 'Something went wrong!',
-                                    error: err
-                                }))
-                            }
+                        return product.save().then(postResult => res.status(201).json({
+                                status: 1,
+                                message: 'Post updated successfully',
+                                result: postResult
+                        })).catch(err => {
+                            console.log(err)
                             return res.status(500).json({
-                                status: 0,
-                                message:'Something went wrong',
-                                error: []
-            
+                                status:0,
+                                message: 'Something went wrong!',
+                                error: err
                             })
                         })
                         

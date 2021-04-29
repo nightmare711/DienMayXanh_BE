@@ -21,4 +21,4 @@ app.use(productsRoute)
 app.get('/users', UsersController.getUsers)
 app.post('/users', UsersController.postUser)
 
-mongoose.connect('mongodb+srv://tranhoang:KoOn711286@cluster0.sg7xo.mongodb.net/products').then(() => app.listen(process.env.PORT || 5000, () => console.log('app listen at port 4000'))).catch(err => console.log(err))
+mongoose.connect('mongodb+srv://tranhoang:KoOn711286@cluster0.sg7xo.mongodb.net/products').then(() => app.listen(process.env.PORT || 4200, () => console.log('app listen at port 4000'))).catch(err => console.log(err))
